@@ -1421,7 +1421,7 @@ document.getElementById('evaluationForm').addEventListener('submit', function(e)
     };
     
     // Submit to airtable webhook
-    fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/appBA9whpengm1H04/wflfEgJT6afZ4vGG4/wtrG5GXlt9ksvFSio', {
+    fetch('https://cors-anywhere.herokuapp.com/https://hooks.airtable.com/workflows/v1/genericWebhook/appBA9whpengm1H04/wflfEgJT6afZ4vGG4/wtrG5GXlt9ksvFSio', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
