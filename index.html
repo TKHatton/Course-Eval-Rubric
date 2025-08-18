@@ -1324,6 +1324,7 @@
     <script>
         // Configuration
         const totalItems = 7;
+        const maxScore = 28; // 7 items * 4 points each
         const passThreshold = 60; // 75% of 80 points
         const excellenceThreshold = 72; // 90% of 80 points
         let scores = {};
@@ -1380,7 +1381,7 @@ document.getElementById('evaluationForm').addEventListener('submit', function(e)
     const formData = new FormData(this);
     const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
     const maxPossibleScore = totalItems * 4;
-    const percentage = Math.round((totalScore / maxPossibleScore) * 100);
+    const percentage = Math.round((averageScore / 28) * 100);
     
     // Prepare evaluation data for n8n
     const evaluationData = {
@@ -1413,8 +1414,8 @@ document.getElementById('evaluationForm').addEventListener('submit', function(e)
         // Add more feedback fields as needed for all 20 items
     };
     
-    // Submit to n8n webhook
-    fetch('https://lkcreativesolutions.app.n8n.cloud/webhook-test/course-evaluation', {  // ← REPLACE THIS WITH YOUR ACTUAL WEBHOOK URL
+    // Submit to airtable webhook
+    fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/appBA9whpengm1H04/wflfEgJT6afZ4vGG4/wtrG5GXlt9ksvFSio', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
