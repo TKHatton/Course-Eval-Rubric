@@ -4,6 +4,8 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    const fetch = (await import('node-fetch')).default;
+    
     const response = await fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/appBA9whpengm1H04/wflfEgJT6afZ4vGG4/wtrG5GXlt9ksvFSio', {
       method: 'POST',
       headers: {
@@ -15,6 +17,10 @@ exports.handler = async (event, context) => {
     if (response.ok) {
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
         body: JSON.stringify({ success: true })
       };
     } else {
@@ -23,6 +29,10 @@ exports.handler = async (event, context) => {
   } catch (error) {
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
       body: JSON.stringify({ 
         success: false, 
         error: error.message 
